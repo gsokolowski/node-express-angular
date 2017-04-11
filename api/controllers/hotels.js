@@ -1,4 +1,4 @@
-// his file is called hotels.controller.js
+// This file is called hotels.controller.js
 
 // require mongoose library
 var mongoose = require('mongoose');
@@ -7,6 +7,34 @@ var Hotel = mongoose.model('Hotel');
 
 var ObjectId = require('mongodb').ObjectId;
 
+var runGeoQuery = function (req, res) {
+
+	var lng = parseFloat(req.query.lng);
+	var lat = parseFloat(req.query.lat);
+
+	// define geoJson point
+	var geoPoint = {
+		type : "Point",
+		coordinates : [lng, lat]
+	};
+
+	// define geoOptions
+	var geoOptions = {
+		spherical : true, 	// on globe
+		maxDistance : 2000,	// in the radius of 2 km
+		num: 5				// no more then 5 hotels suggested
+	};
+
+	Hotel // model
+		// call mongoose getNear() method wirh defined geoPoint and geoOptions
+		.geoNear(geoPoint, geoOptions, function(err, results, stats) {
+			console.log('Geo results', results);
+			console.log('Geo stats', stats);
+			res
+				.status(200)
+				.json(results);
+		});
+};
 
 // http://localhost:3000/api/hotels
 module.exports.hotelsGetAll = function(req, res) {
@@ -16,6 +44,12 @@ module.exports.hotelsGetAll = function(req, res) {
 	var count = 5; // how meny to display 
 
 
+	// check if latituda and longitude exists in query string and if call runGeoWuery()
+	if(req.query && req.query.lng && req.query.lat) {
+		runGeoQuery(req, res);
+		return;
+	}
+
     // check if query string exist and if offset paramiters is there
 	if(req.query && req.query.offset) {
 		offset = parseInt(req.query.offset, 10 );
@@ -24,7 +58,6 @@ module.exports.hotelsGetAll = function(req, res) {
 	if(req.query && req.query.count) {
 		count = parseInt(req.query.count, 10 );
 	}
-
 
 	// http://localhost:3000/api/hotels/?offset=0&count=2
 	Hotel // Hotel model

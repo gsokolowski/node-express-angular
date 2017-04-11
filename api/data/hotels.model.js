@@ -4,6 +4,7 @@
 // require mongoose library
 var mongoose = require('mongoose');
 
+// sub document
 var reviewSchema = new mongoose.Schema({
     name : {
         type : String,
@@ -25,6 +26,7 @@ var reviewSchema = new mongoose.Schema({
     }
 });
 
+// sub document
 var roomSchema = new mongoose.Schema({
     type : String,
     number : Number,
@@ -33,6 +35,7 @@ var roomSchema = new mongoose.Schema({
     price : Number
 });
 
+// main document
 var hotelSchema = new mongoose.Schema({
     name : {
         type : String,
@@ -48,8 +51,8 @@ var hotelSchema = new mongoose.Schema({
     description : String,
     photos : [String],
     currency : String,
-    reviews : [reviewSchema],
-    rooms : [roomSchema],
+    reviews : [reviewSchema],   // reference to reviewSchema sub document
+    rooms : [roomSchema],       // reference to roomSchema sub document
     location : {
         address : String,
         // Always store coordinates longitude (East/West), latitude (North/South) order.

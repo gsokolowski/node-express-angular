@@ -4,8 +4,11 @@ var express = require('express');
 var router = express.Router();
 
 var controllerHotels = require('../controllers/hotels.js');
+var controllerReviews = require('../controllers/reviews.js');
+var controllerRooms = require('../controllers/rooms.js');
 
-// create route for json
+
+// Hotel routes
 router
 	.route('/hotels')
 	.get( controllerHotels.hotelsGetAll );
@@ -16,8 +19,25 @@ router
 
 router
 	.route('/hotels/new')
-	.post( controllerHotels.hotelsAddOne);	
+	.post( controllerHotels.hotelsAddOne);
 
+
+// Review routes
+router
+	.route('/hotels/:hotelId/reviews')
+	.get( controllerReviews.reviewsGetAll);
+
+router
+	.route('/hotels/:hotelId/reviews/:reviewId')
+	.get( controllerReviews.reviewsGetOne);
+
+
+// Room routes
+router
+	.route('/hotels/:hotelId/rooms')
+	.get( controllerRooms.roomsGetAll);
 
 // export instantiated router and in app.js you need to require routes folder and to use them.
 module.exports = router;
+
+

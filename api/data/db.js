@@ -4,8 +4,8 @@
 var mongoose = require('mongoose');
 // this is connection string for loogin in to database meanhotel
 var dburl = 'mongodb://localhost:27017/meanhotel';
-
 // to connect to db
+mongoose.Promise = global.Promise;
 mongoose.connect(dburl);
 
 // event listeners
