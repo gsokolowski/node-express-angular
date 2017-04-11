@@ -1,0 +1,32 @@
+{
+  "name": "express-app",
+  "version": "1.0.0",
+  "description": "Mean stack application",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gsokolowski/mean-stack-app.git"
+  },
+  "keywords": [
+    "mean"
+  ],
+  "author": "GSokolowski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gsokolowski/mean-stack-app/issues"
+  },
+  "homepage": "https://github.com/gsokolowski/mean-stack-app#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "mongodb": "^2.2.25",
+    "mongoose": "^4.9.4"
+  },
+  "devDependencies": {
+    "mocha": "^3.2.0"
+  }
+}

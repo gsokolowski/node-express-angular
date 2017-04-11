@@ -1,1 +1,1 @@
-Mean Stac project
+Mean Stack project
