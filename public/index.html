@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="meanhotel">
 <head>
   <title>MEAN hotel</title>
   <link href="css/bootstrap.min.css" rel="stylesheet"/>
@@ -7,7 +7,7 @@
 </head>
 <body>
 
-  <h1>MEAN hotel homepage</h1>
+  <div ng-view></div> <!-- this needs to be there for angular-->
 
   <footer class="footer">
     <div class="container">
@@ -23,6 +23,13 @@
   </footer>
 
   <script src="jquery/jquery-2.1.4.min.js"></script>
+  <script src="node_modules/angular/angular.js"></script>
+  <script src="node_modules/angular-route/angular-route.js"></script>
+  <script src="angular-app/app.js"></script>
+  <script src="angular-app/hotel-data-factory/hotel-data-factory.js"></script>
+  <script src="angular-app/hotel-list/hotel-list-controller.js"></script>
+  <script src="angular-app/hotel-display/hotel-display-controller.js"></script>
+
 
 </body>
 </html>

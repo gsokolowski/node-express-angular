@@ -22,15 +22,20 @@ app.use('/', function(req, res, next) {
 // middlewere to load all static elements from public folder
 app.use('/', express.static( path.join( __dirname, 'public' )));
 
-// for dealing with form POSTED 
+// add angularjs libraries to app to be able to use in app
+app.use('/node_modules', express.static(__dirname + '/node_modules'));
+
+// for dealing with form POSTED
+// enable parsing of posted forms
 app.use( bodyParser.urlencoded( {extended : false }) );
 
 // middlewere to load routes - http://localhost:3000/api/json
 app.use('/api', routes);
 
 
-// set listen server on port defined at the top
+// set listen server for requests on port defined at the top
 var server = app.listen(app.get('port'), function() {
 	var port = server.address().port;
 	console.log('Magic happens on port ' + port);	
+
 });
