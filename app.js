@@ -26,11 +26,17 @@ app.use('/', express.static( path.join( __dirname, 'public' )));
 app.use('/node_modules', express.static(__dirname + '/node_modules'));
 
 // for dealing with form POSTED
-// enable parsing of posted forms
+// enable parsing of posted forms in urlencoded format - from POSTMAN
 app.use( bodyParser.urlencoded( {extended : false }) );
+
+// for sending data from Angular as POST json
+app.use( bodyParser.json());
 
 // middlewere to load routes - http://localhost:3000/api/json
 app.use('/api', routes);
+
+// issue with fonts stars on angular part
+app.use('/fonts', express.static(__dirname + '/fonts'));
 
 
 // set listen server for requests on port defined at the top
